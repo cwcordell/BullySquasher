@@ -22,7 +22,8 @@ namespace BullySquasher.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Please let us know if you have questions or comments. We would love to hear from you.";
+            ViewBag.Message = new String[] { "Please let us know if you have questions or comments.",
+                              "We would love to hear from you."};
 
             return View();
         }

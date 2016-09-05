@@ -221,6 +221,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\BullySquasher - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\BullySquasher - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\CustomFile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
