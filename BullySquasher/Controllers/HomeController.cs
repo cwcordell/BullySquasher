@@ -15,14 +15,14 @@ namespace BullySquasher.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Bully Squasher";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Please let us know if you have questions or comments. We would love to hear from you.";
 
             return View();
         }
