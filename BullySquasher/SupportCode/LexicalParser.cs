@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BullySquasher.SupportCode
+namespace BullySquasher.SupportCode.LexicalParser
 {
-    interface LexicalParser
+    class LexicalParser
     {
+        
     }
 }
