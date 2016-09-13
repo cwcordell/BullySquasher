@@ -1,0 +1,49 @@
+﻿@*@model IEnumerable<BullySquasher.Models.Parent>*@
+
+@{
+    ViewBag.Title = "Parent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Parent</h2> 
+
+Info: 
+
+@if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+{
+    <text>Authenticated</text>
+}
+else
+{
+    <text > Not Authenticated </text>
+}
+@*@if (!Model.Any())*@
+@*@if (!Model.Any())*@
+@*{*@
+@*    <text>No parents are avaliable.</text>*@
+@*}*@
+@*else*@
+@*{*@
+@*    <table class="table table-striped">*@
+@*        <caption>Basic Table Layout</caption>*@
+@**@
+@*        <thead>*@
+@*            <tr>*@
+@*                <th>Parent</th>*@
+@*            </tr>*@
+@*        </thead>*@
+@**@
+@*        <tbody>*@
+@**@
+@*            @foreach (var parent in Model)*@
+@*            {*@
+@*                <tr>*@
+@*                    <td>parent.Id</td>*@
+@*                    *@
+@*                </tr>*@
+@*            }*@
+@**@
+@**@
+@*        </tbody>*@
+@*    </table>*@
+}

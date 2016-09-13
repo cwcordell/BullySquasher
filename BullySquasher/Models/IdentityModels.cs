@@ -20,6 +20,12 @@ namespace BullySquasher.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Parent> Parents { get; set; }
+        public DbSet<ChildDevice> ChildDevices { get; set; }
+        public DbSet<ParentDevice> ParentDevices { get; set; }
+        public DbSet<Child> Children { get; set; }
+        public DbSet<DeviceType> DeviceTypes { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
