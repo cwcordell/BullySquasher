@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -72,20 +76,34 @@
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.1.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Build.Tasks.v4.0" />
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -193,13 +211,23 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\MappingProfile.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Admin\AdminParentController.cs" />
+    <Compile Include="Controllers\API\ChildController.cs" />
+    <Compile Include="Controllers\API\ParentController.cs" />
+    <Compile Include="Controllers\ChildController.cs" />
+    <Compile Include="Controllers\ChildDevicesController.cs" />
+    <Compile Include="Controllers\ChildMessageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ParentController.cs" />
+    <Compile Include="DTOs\ChildSaveDto.cs" />
+    <Compile Include="DTOs\ChildDto.cs" />
+    <Compile Include="DTOs\ParentDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -211,16 +239,28 @@
     <Compile Include="Migrations\201609112236011_AddParentsAndChiltrenAndDevicesTables.Designer.cs">
       <DependentUpon>201609112236011_AddParentsAndChiltrenAndDevicesTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609141225260_AddChildMessageTable.cs" />
+    <Compile Include="Migrations\201609141225260_AddChildMessageTable.Designer.cs">
+      <DependentUpon>201609141225260_AddChildMessageTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609141248114_AddChildMessagesToChildDevicesAndDatesToChildMessage.cs" />
+    <Compile Include="Migrations\201609141248114_AddChildMessagesToChildDevicesAndDatesToChildMessage.Designer.cs">
+      <DependentUpon>201609141248114_AddChildMessagesToChildDevicesAndDatesToChildMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609141559187_UpdateMessageAndIsBullyMessageNamesInChildMessage.cs" />
+    <Compile Include="Migrations\201609141559187_UpdateMessageAndIsBullyMessageNamesInChildMessage.Designer.cs">
+      <DependentUpon>201609141559187_UpdateMessageAndIsBullyMessageNamesInChildMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Child.cs" />
+    <Compile Include="Models\ChildMessage.cs" />
     <Compile Include="Models\DeviceType.cs" />
     <Compile Include="Models\ParentDevice.cs" />
     <Compile Include="Models\ChildDevice.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Parent.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="SupportCode\LexicalParser.cs" />
@@ -239,7 +279,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\BullySquasher - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\BullySquasher - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\BullySquasher - Web Deploy With DB.pubxml" />
     <None Include="Properties\PublishProfiles\BullySquasher - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\CustomFile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -255,12 +297,15 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -291,6 +336,21 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Parent\Index.cshtml" />
     <Content Include="Views\Admin\Parent\Index.cshtml" />
+    <Content Include="Views\Child\Create.cshtml" />
+    <Content Include="Views\Child\Delete.cshtml" />
+    <Content Include="Views\Child\Details.cshtml" />
+    <Content Include="Views\Child\Edit.cshtml" />
+    <Content Include="Views\Child\Index.cshtml" />
+    <Content Include="Views\ChildMessage\Index.cshtml" />
+    <Content Include="Views\ChildDevices\Create.cshtml" />
+    <Content Include="Views\ChildDevices\Delete.cshtml" />
+    <Content Include="Views\ChildDevices\Details.cshtml" />
+    <Content Include="Views\ChildDevices\Edit.cshtml" />
+    <Content Include="Views\ChildDevices\Index.cshtml" />
+    <None Include="Web.BullySquasher.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -311,10 +371,28 @@
     <EmbeddedResource Include="Migrations\201609112236011_AddParentsAndChiltrenAndDevicesTables.resx">
       <DependentUpon>201609112236011_AddParentsAndChiltrenAndDevicesTables.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609141225260_AddChildMessageTable.resx">
+      <DependentUpon>201609141225260_AddChildMessageTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609141248114_AddChildMessagesToChildDevicesAndDatesToChildMessage.resx">
+      <DependentUpon>201609141248114_AddChildMessagesToChildDevicesAndDatesToChildMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609141559187_UpdateMessageAndIsBullyMessageNamesInChildMessage.resx">
+      <DependentUpon>201609141559187_UpdateMessageAndIsBullyMessageNamesInChildMessage.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'BullySquasher.Release|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

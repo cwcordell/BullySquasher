@@ -6,23 +6,14 @@ using System.Web;
 
 namespace BullySquasher.Models
 {
-    public class ChildDevice
+    public class ChildMessage
     {
         public int Id { get; set; }
-
+        public ChildDevice ChildDevice { get; set; }
         [Required]
-        [MaxLength(64)]
-        public string Name { get; set; }
-
-        public Child Child { get; set; }
-
-        public int ChildId { get; set; }
-
-        public DeviceType DeviceType { get; set; }
-
-        public int DeviceTypeId { get; set; }
-
-        public IList<ChildMessage> ChildMessagesList { get; set; }
+        public int ChildDeviceId { get; set; }
+        public string Message { get; set; }
+        public bool? IsBullyMessage { get; set; }
 
         public DateTime DateCreated { get; set; }
 

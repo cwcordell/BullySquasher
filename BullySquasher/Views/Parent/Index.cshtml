@@ -1,49 +1,63 @@
-﻿@*@model IEnumerable<BullySquasher.Models.Parent>*@
+﻿@using BullySquasher.Models
+@*@model IEnumerable<BullySquasher.Models.Parent>*@
 
 @{
     ViewBag.Title = "Parent";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
+    <div class="row">
+        <h2>Activity at a Glance</h2>
 
-<h2>Parent</h2> 
-
-Info: 
-
-@if (User.Identity.IsAuthenticated)
-{
-    <text>Authenticated</text>
-}
-else
-{
-    <text > Not Authenticated </text>
-}
-
-@if (Model == null)
-{
-    <text>No parents are avaliable.</text>
-}
-else
-{
-    <table class="table table-striped">
-        <caption>Basic Table Layout</caption>
-
-        <thead>
-            <tr>
-                <th>Parent</th>
-            </tr>
-        </thead>
-
-        <tbody>
-
-            @foreach (var child in Model.Children)
+        @if (Model == null)
+        {
+            <text>No information is avaliable</text>
+        }
+        else
+        {
+            foreach (var child in Model.Children)
             {
-                <tr>
-                    <td>@child.Name</td>
-                    <td>@child.ChildDevices</td>
-                </tr>
+                <hr/>
+                <h3>@child.Name</h3>
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 col-lg-12">
+                    @if (child.ChildDevices.Count > 0)
+                    {
+                        foreach (var device in child.ChildDevices)
+                        {
+                            <table class="table table-striped table-hover table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Messages - @device.Name (<em>@device.DeviceType.Name</em>)
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @if (device.ChildMessagesList != null && device.ChildMessagesList.Count > 0)
+                            {
+                                foreach (var message in device.ChildMessagesList)
+                                {
+                                            <tr class=@(message.IsBullyMessage ? "danger" : "success")
+                                                onclick="location.href = '@(Url.Action("ChangeIsBullyMessage", "ChildMessage", new {id = message.Id}))'">
+                                                <td><strong>@message.DateCreated</strong><text> - @message.Message</text></td>
+                                                @*                                    @Html.AntiForgeryToken()*@
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr><td>No Messages</td></tr>
+                                    }
+                                </tbody>
+                            </table>
+                            @*                            @Html.ActionLink("more ...", "Index", "Child", new { id = child.Id })*@
+                        }
+                    }
+                    else
+                    { <text> No Assigned Devices. - </text> @Html.ActionLink("Add Devices", "Create", "ChildDevices", new { id = child.Id }, null)}
+                </div>
             }
-
-
-        </tbody>
-    </table>
-}
+        }
+    </div>
+</div>

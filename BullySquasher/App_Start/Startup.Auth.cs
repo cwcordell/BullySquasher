@@ -54,6 +54,12 @@ namespace BullySquasher
             //   consumerKey: "",
             //   consumerSecret: "");
 
+            // local
+//            app.UseFacebookAuthentication(
+//               appId: "1065302376898362",
+//               appSecret: "26c1018b642500d09bed7b7b16727762");
+
+            // live
             app.UseFacebookAuthentication(
                appId: "1062499840511949",
                appSecret: "262a00f2f979ec53291aad2cf414822d");
