@@ -10,6 +10,7 @@ using BullySquasher.Models;
 
 namespace BullySquasher.Controllers
 {
+    [Authorize]
     public class ChildDevicesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
